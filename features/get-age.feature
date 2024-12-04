@@ -1,11 +1,12 @@
 Feature: Retrieve estimated age from the Agify API
+
   # The API documentation does not mention what is considered a valid name, 
   # hence I have included a few that I assume are valid.
   Scenario: Retrieve estimated age for a single name
     When I send a GET request to the API with a valid <name> query parameter
     Then the API should respond with status code 200
     And the response should be in JSON format
-    And the response should contain an estimated age
+    And the response should contain an estimated age, count and name
 
     Examples:
       | name           |
@@ -18,11 +19,11 @@ Feature: Retrieve estimated age from the Agify API
     When I send a GET request to the API with a valid <country_id> country ID query parameter
     Then the API should respond with status code 200
     And the response should be in JSON format
-    And the response should contain an estimated age
+    And the response should contain an estimated age, count and name
 
     Examples:
       | country_id |
-      | "*"        |
+      | "US"       |
       | "GB"       |
       | "IE"       |
 
@@ -41,7 +42,7 @@ Feature: Retrieve estimated age from the Agify API
     When I send a GET request to the API without providing the name parameter
     Then the API should respond with status code 422
     And the response contains the "Missing 'name' parameter" error
-
+    
   # The API documentation doesn't mention what would be considered an invalid name; 
   # a space, special characters and numbers are all valid and no error is returned.
   # Therefore, the steps for this scenario are not fully implemented.

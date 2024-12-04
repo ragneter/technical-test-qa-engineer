@@ -2,7 +2,6 @@ import { Given, When, Then, World, IWorldOptions, setWorldConstructor } from "@c
 import supertest from "supertest";
 import { expect } from "chai"
 import TestAgent from "supertest/lib/agent.js";
-// import Test from "supertest/lib/test";
 
 const request: TestAgent = supertest("https://api.agify.io");
 
